@@ -20,7 +20,7 @@ const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
 
   return (
     <nav>
-      <div className={`${navBarBackground} ${flexBetween} fixed top-0 z-30 w-full py-6`}>
+      <div className={`${navBarBackground} ${flexBetween} fixed top-0 z-50 w-full py-6`}>
         <div className={`${flexBetween} mx-auto w-5/6`}>
           <div className={`${flexBetween} w-full gap-16`}>
             <img src={Logo} alt="logo" className="cursor-pointer" />
