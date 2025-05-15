@@ -1,16 +1,19 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { mockMatchMedia } from "@/tests/mocks/mockMatchMedia";
 import "@testing-library/jest-dom";
 import { vitest } from "vitest";
 
-Object.defineProperty(window, "matchMedia", {
-  writable: true,
-  value: (query: string) => ({
-    matches: false,
-    media: query,
-    onchange: null,
-    addListener: vitest.fn(), // deprecated
-    removeListener: vitest.fn(), // deprecated
-    addEventListener: vitest.fn(),
-    removeEventListener: vitest.fn(),
-    dispatchEvent: vitest.fn(),
-  }),
-});
+// o mock da useMediaQuery
+beforeAll(() => mockMatchMedia(true));
+
+// a lib framer-motion depende do IntersectionObserver
+class IntersectionObserver {
+  constructor(_callback: any, _options?: any) {}
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+}
+
+// @ts-expect-error: jsdom does not support IntersectionObserver
+global.IntersectionObserver = IntersectionObserver;
