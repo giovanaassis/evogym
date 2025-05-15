@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { mockMatchMedia } from "@/tests/mocks/mockMatchMedia";
+import { mockMatchMedia } from "./src/tests/mocks/mockMatchMedia"
 import "@testing-library/jest-dom";
 
 // o mock da useMediaQuery
