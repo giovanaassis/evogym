@@ -2,7 +2,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { mockMatchMedia } from "@/tests/mocks/mockMatchMedia";
 import "@testing-library/jest-dom";
-import { vitest } from "vitest";
 
 // o mock da useMediaQuery
 beforeAll(() => mockMatchMedia(true));
