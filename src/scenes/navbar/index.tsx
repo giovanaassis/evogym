@@ -20,7 +20,9 @@ const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
 
   return (
     <nav>
-      <div className={`${navBarBackground} ${flexBetween} fixed top-0 z-50 w-full py-6`}>
+      <div
+        className={`${navBarBackground} ${flexBetween} fixed top-0 z-50 w-full py-6`}
+      >
         <div className={`${flexBetween} mx-auto w-5/6`}>
           <div className={`${flexBetween} w-full gap-16`}>
             <img src={Logo} alt="logo" className="cursor-pointer" />
@@ -61,6 +63,7 @@ const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
               <button
                 className="bg-secondary-500 cursor-pointer rounded-full p-2"
                 onClick={() => setIsMenuToggled(!isMenuToggled)}
+                aria-label="openMobileMenu"
               >
                 <Bars3Icon className="h-6 w-6 text-white" />
               </button>
@@ -73,12 +76,15 @@ const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
       {!isAboveMediumScreens && isMenuToggled && (
         <div className="bg-primary-100 fixed right-0 bottom-0 z-40 h-full w-[300px] drop-shadow-xl">
           <div className="flex justify-end p-12">
-            <button onClick={() => setIsMenuToggled(!isMenuToggled)}>
+            <button
+              onClick={() => setIsMenuToggled(!isMenuToggled)}
+              aria-label="closeMobileMenu"
+            >
               <XMarkIcon className="h-6 w-6 cursor-pointer text-gray-400" />
             </button>
           </div>
 
-          <div className={`ml-[33%] flex flex-col gap-10 text-2xl`}>
+          <div className={`ml-[33%] flex flex-col gap-10 text-2xl`} data-testid="menu-mobile">
             <Link
               page="Home"
               selectedPage={selectedPage}
