@@ -75,6 +75,7 @@ const Benefits = ({ setSelectedPage }: Props) => {
           whileInView="visible"
           viewport={{ once: true, amount: 0.5 }}
           variants={container}
+          data-testid="benefits"
         >
           {benefits.map((benefit) => (
             <Benefit
@@ -93,6 +94,7 @@ const Benefits = ({ setSelectedPage }: Props) => {
             src={BenefitsPageGraphic}
             alt="benefits-page-graphic"
             className="mx-auto"
+            aria-label="benefitsPageGraphic"
           />
 
           <div>
