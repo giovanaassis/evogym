@@ -38,7 +38,7 @@ const Home = ({ setSelectedPage }: Props) => {
           >
             <div className="relative">
               <div className="before:absolute before:-top-20 before:-left-20 before:z-[-1] md:before:content-[url('./assets/EvolveText.png')]">
-                <img src={HomePageText} alt="home-page-text" />
+                <img src={HomePageText} alt="home-page-text" aria-label="homePageText" />
               </div>
             </div>
 
@@ -76,7 +76,7 @@ const Home = ({ setSelectedPage }: Props) => {
 
         {/* MAIN IMAGE */}
         <div className="flex basis-3/5 justify-center md:z-10 md:mt-16 md:ml-40 md:justify-items-end">
-          <img src={HomePageGraphic} alt="home-page-graphic" />
+          <img src={HomePageGraphic} alt="home-page-graphic" aria-label="homePageGraphic"/>
         </div>
       </motion.div>
 
@@ -84,7 +84,7 @@ const Home = ({ setSelectedPage }: Props) => {
       {isAboveMediumScreens && (
         <div className="bg-primary-100 h-[150px] w-full py-10">
           <div className="mx-auto w-5/6">
-            <div className="flex w-3/5 items-center justify-between gap-8">
+            <div className="flex w-3/5 items-center justify-between gap-8" data-testid="sponsors">
               <img src={SponsorRedBull} alt="redbull-sponsor" />
               <img src={SponsorForbes} alt="forbes-sponsor" />
               <img src={SponsorFortune} alt="fortune-sponsor" />
