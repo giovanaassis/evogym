@@ -3,8 +3,9 @@ import { mockMatchMedia } from "./src/tests/mocks/mockMatchMedia";
 import "@testing-library/jest-dom";
 import "@/tests/mocks/mockAnchorLink";
 
-// o mock da useMediaQuery
-beforeAll(() => mockMatchMedia(true));
+beforeAll(() => {
+  mockMatchMedia(true);
+});
 
 // a lib framer-motion depende do IntersectionObserver
 class MockIntersectionObserver implements IntersectionObserver {

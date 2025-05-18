@@ -4,24 +4,29 @@ import { motion } from "framer-motion";
 import ContactUsPageGraphic from "@/assets/ContactUsPageGraphic.png";
 import HText from "@/shared/HText";
 import { useForm } from "react-hook-form";
+import { useRef } from "react";
 
 type Props = {
   setSelectedPage: (value: SelectedPages) => void;
+  onSubmit?: (data: any) => void;
 };
 
-const ContactUs = ({ setSelectedPage }: Props) => {
+const ContactUs = ({ setSelectedPage, onSubmit }: Props) => {
   const inputStyles = `mb-5 w-full rounded-lg bg-primary-300 px-5 py-3 placeholder-white`;
 
   const {
     register,
-    trigger,
+    handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = async (e: any) => {
-    const isValid = await trigger();
-    if (!isValid) {
-      e.preventDefault();
+  const formRef = useRef<HTMLFormElement>(null);
+
+  const submitHandler = async (data: any) => {
+    if (onSubmit) {
+      onSubmit(data); // para testes
+    } else {
+      formRef.current?.submit(); // para produção
     }
   };
 
@@ -65,10 +70,15 @@ const ContactUs = ({ setSelectedPage }: Props) => {
             }}
           >
             <form
+              ref={formRef}
               target="_self"
-              onSubmit={onSubmit}
-              action="https://formsubmit.co/el/degowu"
+              onSubmit={handleSubmit(submitHandler)}
               method="POST"
+              role="form"
+              {...(!onSubmit && {
+                action:
+                  "https://formsubmit.co/ec9031f0ff9ceea364825579d87b7a0e",
+              })}
             >
               <input
                 className={inputStyles}
@@ -86,7 +96,7 @@ const ContactUs = ({ setSelectedPage }: Props) => {
 
               <input
                 className={inputStyles}
-                type="email"
+                type="text"
                 placeholder="EMAIL"
                 {...register("email", {
                   required: true,
@@ -117,6 +127,15 @@ const ContactUs = ({ setSelectedPage }: Props) => {
                 </p>
               )}
 
+              <input
+                type="hidden"
+                name="_subject"
+                value="Novo contato via Evogym"
+              />
+              <input type="hidden" name="_captcha" value="false" />
+
+              <input type="hidden" name="_next" value="http://localhost:5173" />
+
               <button
                 type="submit"
                 className="bg-secondary-500 mt-5 cursor-pointer rounded-lg px-20 py-3 transition duration-500 hover:text-white"
@@ -142,6 +161,7 @@ const ContactUs = ({ setSelectedPage }: Props) => {
                 src={ContactUsPageGraphic}
                 alt="contact-us-page-graphic"
                 className="w-full"
+                aria-label="contactUsPageGraphic"
               />
             </div>
           </motion.div>
