@@ -134,7 +134,7 @@ const ContactUs = ({ setSelectedPage, onSubmit }: Props) => {
               />
               <input type="hidden" name="_captcha" value="false" />
 
-              <input type="hidden" name="_next" value="http://localhost:5173" />
+              <input type="hidden" name="_next" value="https://evogym-psi.vercel.app/" />
 
               <button
                 type="submit"
