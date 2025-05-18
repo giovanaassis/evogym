@@ -1,11 +1,16 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { mockMatchMedia } from "./src/tests/mocks/mockMatchMedia";
 import "@testing-library/jest-dom";
-import "@/tests/mocks/mockAnchorLink";
+import { vi } from "vitest";
 
 beforeAll(() => {
   mockMatchMedia(true);
 });
+
+vi.mock("react-anchor-link-smooth-scroll", () => ({
+  __esModule: true,
+  default: ({ children, ...props }: React.PropsWithChildren<React.AnchorHTMLAttributes<HTMLAnchorElement>>) => <a {...props}>{children}</a>,
+}));
 
 // a lib framer-motion depende do IntersectionObserver
 class MockIntersectionObserver implements IntersectionObserver {
@@ -14,17 +19,12 @@ class MockIntersectionObserver implements IntersectionObserver {
   readonly thresholds: ReadonlyArray<number> = [];
 
   constructor(
-    private callback: IntersectionObserverCallback,
+    _callback: IntersectionObserverCallback,
     _options?: IntersectionObserverInit,
   ) {}
 
-  observe(_target: Element): void {
-    // Se quiser, pode simular chamada do callback:
-    // this.callback([{ isIntersecting: true, target: _target } as IntersectionObserverEntry], this);
-  }
-
-  unobserve(_target: Element): void {}
-
+  observe(): void {}
+  unobserve(): void {}
   disconnect(): void {}
   takeRecords(): IntersectionObserverEntry[] {
     return [];
